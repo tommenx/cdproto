@@ -80,6 +80,8 @@ message PutPodResourceResponse {
 
 message PutVolumeRequest {
     Volume volume = 1;
+    string namespace = 2;
+    string pvc = 3;
     base.Base base = 255;
 }
 
