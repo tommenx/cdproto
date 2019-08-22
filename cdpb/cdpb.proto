@@ -63,7 +63,7 @@ message Volume {
 message PutNodeStorageRequest {
     string name = 1; //节点的名称
     string kind = 2; //上报的类型，capability,allocation,remaining
-    repeated Storage storage = 3; // 存储的详细情况
+    Node node = 3; // 存储的详细情况
     base.Base base = 255;
 }
 message PutNodeStorageResponse {
