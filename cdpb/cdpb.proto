@@ -71,12 +71,12 @@ message PutNodeStorageResponse {
 }
 
 message GetNodeStorageRequest {
-    map<string,Node> nodes = 1;
+    string level = 1;
     base.Base base = 255;
 }
 
 message GetNodeStorageResponse {
-
+    map<string,Node> nodes = 1;
     base.BaseResp base_resp = 255;
 }
 
