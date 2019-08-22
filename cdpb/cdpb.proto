@@ -63,7 +63,8 @@ message Volume {
 message PutNodeStorageRequest {
     NodeStorage node = 1;
     Kind kind = 2; //capability, allocation, remaining
-    StorageType storage_type = 3;
+    StorageType storage_type = 3; //ssd,hdd,nvm
+    string name = 4;
     base.Base base = 255;
 }
 message PutNodeStorageResponse {
