@@ -12,6 +12,14 @@ enum StorageType {
     SSD = 1;
     HDD = 2;
 }
+
+//上报资源的类型
+enum Kind {
+    Capability = 0;
+    Allocation = 1;
+    Remaining = 2;
+}
+
 //资源的种类
 enum ResourceType {
     ReadBps = 0;
@@ -31,9 +39,7 @@ message NodeStorage {
 message Storage {
     string name = 1; // volume group name
     StorageType storage_type = 2; // 底层存储的种类
-    map<string, int64> capability = 3; //总资源
-    map<string, int64> allocation = 4; //剩余可分配资源
-    map<string, int64> remaining = 5; //系统当前剩余资源
+    map<string, int64> resource = 3; //总资源
 }
 
 message PodResource {
@@ -56,6 +62,8 @@ message Volume {
 
 message PutNodeStorageRequest {
     NodeStorage node = 1;
+    Kind kind = 2; //capability, allocation, remaining
+    StorageType storage_type = 3;
     base.Base base = 255;
 }
 message PutNodeStorageResponse {
