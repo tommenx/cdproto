@@ -6,28 +6,28 @@ option go_package="github.com/tommenx/cdproto/cdpb";
 import "base.proto";
 
 
-//存储设备的类型
-enum StorageType {
-    NVM = 0;
-    SSD = 1;
-    HDD = 2;
-}
-
-//上报资源的类型
-enum Kind {
-    Capability = 0;
-    Allocation = 1;
-    Remaining = 2;
-}
-
-//资源的种类
-enum ResourceType {
-    ReadBps = 0;
-    ReadIops = 1;
-    WriteBps = 2;
-    WriteIops = 3;
-    StorageSpace = 4;
-}
+////存储设备的类型
+//enum StorageType {
+//    NVM = 0;
+//    SSD = 1;
+//    HDD = 2;
+//}
+//
+////上报资源的类型
+//enum Kind {
+//    Capability = 0;
+//    Allocation = 1;
+//    Remaining = 2;
+//}
+//
+////资源的种类
+//enum ResourceType {
+//    ReadBps = 0;
+//    ReadIops = 1;
+//    WriteBps = 2;
+//    WriteIops = 3;
+//    StorageSpace = 4;
+//}
 
 message NodeStorage {
     string node_name = 1;
@@ -38,7 +38,7 @@ message NodeStorage {
 //对于磁盘的默认单位为MB
 message Storage {
     string name = 1; // volume group name
-    StorageType storage_type = 2; // 底层存储的种类
+    string level = 2; // 底层存储的种类
     map<string, int64> resource = 3; //总资源
 }
 
@@ -49,6 +49,7 @@ message PodResource {
     string dockerId = 4; // 对应的docker的id，在catchup填充，lazy的方式
     string cgroupPath = 5; // cgroup文件的地址，在catchup填充，lazy的方式
     map<string, int64> request_resource = 6 ;
+    string level = 7;
 }
 
 message Volume {
@@ -62,8 +63,8 @@ message Volume {
 
 message PutNodeStorageRequest {
     NodeStorage node = 1;
-    Kind kind = 2; //capability, allocation, remaining
-    StorageType storage_type = 3; //ssd,hdd,nvm
+    string kind =  2;
+    string level = 3;
     string name = 4;
     base.Base base = 255;
 }
