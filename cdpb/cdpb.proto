@@ -94,6 +94,7 @@ message PutPodResourceResponse {
 message PutVolumeRequest {
     Volume volume = 1;
     string pv = 2;
+    int32 operation = 3; // 0表示删除，1表示新增
     base.Base base = 255;
 }
 
